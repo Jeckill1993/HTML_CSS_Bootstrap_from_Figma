@@ -1,21 +1,18 @@
 import React from 'react';
 import './App.css';
-import {Suspense} from 'react';
-import {BrowserRouter} from "react-router-dom";
-
-const Header = React.lazy(() => import('./components/Header'));
-const NavBar = React.lazy(() => import('./components/NavBar'));
+import Main from "./components/Main";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import NavBar from "./components/NavBar";
 
 function App() {
     return (
-        <BrowserRouter>
-            <div>
-                <Suspense fallback={<p>Loading</p>}>
-                    <Header/>
-                    <NavBar/>
-                </Suspense>
-            </div>
-        </BrowserRouter>
+        <div className={'App'}>
+            <Header/>
+            <NavBar/>
+            <Main/>
+            <Footer/>
+        </div>
     );
 }
 

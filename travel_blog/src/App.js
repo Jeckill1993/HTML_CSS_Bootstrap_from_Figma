@@ -4,15 +4,16 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import AppContainer from "./components/styled_components/AppContainer";
 
 function App() {
     return (
-        <div className={'App'}>
+        <AppContainer>
             <Header/>
             <NavBar/>
             <Main/>
             <Footer/>
-        </div>
+        </AppContainer>
     );
 }
 

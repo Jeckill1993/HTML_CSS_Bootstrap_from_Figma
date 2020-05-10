@@ -1,9 +1,10 @@
 import React from 'react';
+import FooterLayout from "./styled_components/FooterLayout";
 
 
 const Footer = () => {
     return (
-        <div>Footer</div>
+        <FooterLayout>Footer</FooterLayout>
     )
 }
 

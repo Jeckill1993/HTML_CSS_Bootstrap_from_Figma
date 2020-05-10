@@ -8,7 +8,7 @@ const instance = axios.create({
 
 export const postsAPI = {
     getPosts: () => {
-        return instance.get('posts').then(response => {
+        return instance.get(`posts`).then(response => {
             return response.data;
         })
     },
@@ -23,7 +23,7 @@ export const postsAPI = {
     },
     getPostComments: (postId) => {
         return instance.get(`/posts/${postId}?_embed=comments`).then(response => {
-            return response.data.comments;
+            return response.data;
         })
     },
     addComment: (postId, body) => {

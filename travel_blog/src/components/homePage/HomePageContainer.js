@@ -7,7 +7,7 @@ import {
     deletePostTC,
     getPostCommentsTC,
     addCommentTC
-} from "../redux/posts_reducer";
+} from "../../redux/posts_reducer";
 import {connect} from 'react-redux';
 
 

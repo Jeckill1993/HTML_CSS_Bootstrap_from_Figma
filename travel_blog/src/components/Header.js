@@ -1,17 +1,15 @@
 import React from 'react';
+import HeaderLayout from "./styled_components/HeaderLayout";
 
 
 const Header = () => {
     return (
-        <div>
-            <div>
+        <HeaderLayout>
                 <img src={''} alt={'logo'}/>
-            </div>
-            <div>
                 <div>contacts</div>
                 <div>social networks</div>
-            </div>
-        </div>
+                <div>sign in</div>
+        </HeaderLayout>
     )
 }
 

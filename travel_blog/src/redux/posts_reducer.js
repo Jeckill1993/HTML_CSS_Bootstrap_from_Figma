@@ -1,7 +1,7 @@
 import {postsAPI} from './../API/api';
 
 const GET_POSTS = 'GET-POSTS';
-const GET_COMMENTS = 'GET-COMMENTS';
+const GET_CURRENT_POST = "GET-CURRENT-POST"
 
 
 export const getPostSuccessAC = (posts) => {
@@ -10,10 +10,10 @@ export const getPostSuccessAC = (posts) => {
         posts,
     }
 }
-export const getCommentsSuccessAC = (comments) => {
+export const getCurrentPostSuccessAC = (post) => {
     return {
-        type: GET_COMMENTS,
-        comments,
+        type: GET_CURRENT_POST,
+        post,
     }
 }
 
@@ -33,8 +33,8 @@ export const addPostTC = (post) => {
 export const updatePostTC = (postId, post) => {
     return async (dispatch) => {
         await postsAPI.updatePost(postId, post);
-        let data = await postsAPI.getPosts();
-        dispatch(getPostSuccessAC(data));
+        let data = await postsAPI.getPostComments(postId);
+        dispatch(getCurrentPostSuccessAC(data));
     }
 }
 export const deletePostTC = (postId) => {
@@ -47,21 +47,21 @@ export const deletePostTC = (postId) => {
 export const getPostCommentsTC = (postId) => {
     return async (dispatch) => {
         let data = await postsAPI.getPostComments(postId);
-        dispatch(getCommentsSuccessAC(data));
+        dispatch(getCurrentPostSuccessAC(data));
     }
 }
 export const addCommentTC = (postId, body) => {
     return async (dispatch) => {
         await postsAPI.addComment(postId, body);
         let data = await postsAPI.getPostComments(postId);
-        dispatch(getCommentsSuccessAC(data));
+        dispatch(getCurrentPostSuccessAC(data));
     }
 }
 
 
 const initialState = {
     posts: [],
-    comments: [],
+    currentPost: {},
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -71,10 +71,10 @@ const postsReducer = (state = initialState, action) => {
                 ...state,
                 posts: action.posts,
             }
-        case GET_COMMENTS:
+        case GET_CURRENT_POST:
             return {
                 ...state,
-                comments: action.comments
+                currentPost: action.post,
             }
         default:
             return state

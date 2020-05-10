@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route} from "react-router-dom";
-import HomePageContainer from "./HomePageContainer";
-import CreateNewPostPageContainer from "./CreateNewPostPageContainer";
+import HomePageContainer from "./homePage/HomePageContainer";
+import CreateNewPostPageContainer from "./createPostPage/CreateNewPostPageContainer";
 import UsefulSites from "./UsefulSites";
 import Gallery from "./Galery";
-import PostPageContainer from "./PostPageContainer";
+import PostPageContainer from "./components_PostPage/PostPageContainer";
 
 
 const Main = () => {
@@ -14,7 +14,7 @@ const Main = () => {
             <Route path={'/create_new_post'} render={() => <CreateNewPostPageContainer/>}/>
             <Route path={'/useful_sites'} render={() => <UsefulSites/>}/>
             <Route path={'/gallery'} render={() => <Gallery/>}/>
-            <Route path={'post/:postId?'} render={() => <PostPageContainer />}/>
+            <Route path={'/post/:postId?'} render={() => <PostPageContainer />}/>
         </div>
     )
 }

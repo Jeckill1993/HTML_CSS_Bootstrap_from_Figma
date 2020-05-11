@@ -2,22 +2,16 @@ import React, {useState} from 'react';
 import {ButtonLayout} from "../styled_components/ButtonLayout";
 import {CommentsContainerLayout} from "../styled_components/CommentsLayout";
 import {CommentsList, CommentItemLayout} from "../styled_components/CommentsLayout";
+import {Textarea} from "../../validators/components_FormsError";
+import {Field, reduxForm} from "redux-form";
+import {requiredField} from "../../validators/validate";
 
 
 const Comments = ({comments, postId, addComment}) => {
 
-    let [textComment, setTextComment] = useState('');
-
     let comment = comments.map(comment => {
         return <CommentItemLayout key={comment.id}>{comment.body}</CommentItemLayout>
     })
-
-    let changeTextComment = (e) => {
-        setTextComment(e.currentTarget.value);
-    }
-    let onAddComment = () => {
-        addComment(postId, textComment);
-    }
 
     return (
         <CommentsContainerLayout>
@@ -25,10 +19,29 @@ const Comments = ({comments, postId, addComment}) => {
             <CommentsList length={comments.length}>
                 {comment}
             </CommentsList>
-            <textarea cols={'45'} rows={'10'} maxLength={'65000'} onChange={changeTextComment} value={textComment}/>
-            <ButtonLayout onClick={onAddComment}>Send comment</ButtonLayout>
+            <CommentFormContainer postId={postId} addComment={addComment}/>
         </CommentsContainerLayout>
     )
 }
 
 export default Comments;
+
+
+//create reduxForm 'CommentFormContainer'
+const CommentForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field name={'body'} component={Textarea} validate={[requiredField]}/>
+            <ButtonLayout>Send comment</ButtonLayout>
+        </form>
+    )
+}
+const CommentFormRedux = reduxForm({form: 'comment'})(CommentForm);
+const CommentFormContainer = ({postId, addComment}) => {
+    let onAddComment = (value) => {
+        addComment(postId, value.body);
+    }
+    return (
+        <CommentFormRedux onSubmit={onAddComment}/>
+    )
+}

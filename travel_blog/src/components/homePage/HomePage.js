@@ -8,7 +8,7 @@ const HomePage = ({posts, getPosts, ...props}) => {
     useEffect(() => {
         getPosts()
     }, [])
-    let post = posts.map((post) => {
+    let post = posts.reverse().map((post) => {
         return <NavLinkLayout key={post.id} to={`/post/${post.id}`}><Post key={post.id} id={post.id} title={post.title} body={post.body} /></NavLinkLayout>
     })
     return (

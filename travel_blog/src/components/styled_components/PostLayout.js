@@ -10,4 +10,13 @@ export const H2Layout = styled.h2`
 `
 export const ArticleLayout = styled.article`
     color: #15161a;
+    margin-bottom: 30px;
+`
+export const PostButtonsBlockLayout = styled.div`
+    display: flex;
+    justify-content: start;
+`
+export const UpdateContainerLayout = styled(PostLayout)`
+    display: flex;
+    flex-direction: column;
 `

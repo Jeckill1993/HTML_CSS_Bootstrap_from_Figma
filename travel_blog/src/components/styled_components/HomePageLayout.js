@@ -6,8 +6,6 @@ const HomePageLayout = styled.div`
     grid-template-column: 1fr;
     grid-template-rows: repeat(${props => props.num},1fr);
     grid-gap: 10px;
-    width: 60%;
-    margin: auto;
 `
 
 export default HomePageLayout;

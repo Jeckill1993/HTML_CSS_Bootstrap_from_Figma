@@ -1,19 +1,27 @@
 import React from "react";
 import {Field, reduxForm} from 'redux-form';
 import {NavLinkLayout} from "../styled_components/NavLinksLayout";
+import {requiredField, maxLengthCreator} from "../../validators/validate";
+import {Textarea, Input} from "../../validators/components_FormsError";
+import {CreatePostFormContainer} from "../styled_components/validateFormElementsLayout";
+import {ButtonLayout} from "../styled_components/ButtonLayout";
+
+const maxLength150 = maxLengthCreator(150);
 
 const CreateForm = (props) => {
     return (
-            <form onSubmit={props.handleSubmit}>
-                <h3>Create new post</h3>
+            <CreatePostFormContainer onSubmit={props.handleSubmit}>
+                <h2>Create new post</h2>
                 <div>
-                    <Field  name={'title'} component={'input'} />
+                    <h3>Title:</h3>
+                    <Field  name={'title'} component={Input} validate={[requiredField, maxLength150]} />
                 </div>
                 <div>
-                    <Field name={'body'} component={'textarea'}/>
+                    <h3>Article:</h3>
+                    <Field name={'body'} component={Textarea} validate={[requiredField]}/>
                 </div>
-                <button>Create</button>
-            </form>
+                <ButtonLayout>Create</ButtonLayout>
+            </CreatePostFormContainer>
     )
 }
 

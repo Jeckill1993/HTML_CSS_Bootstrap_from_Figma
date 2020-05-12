@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const AppContainer = styled.div`
     text-align: center;
     display: grid;
-    grid-template-rows: 100px 70px 9fr 100px;
+    grid-template-rows: 180px 70px 9fr 120px;
     grid-auto-columns: 1fr;
     margin: auto;
     background-color: #f5f5f5;
